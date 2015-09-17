@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://$NAMENODE_HOST</value>
+    </property>
+
+    <property>
+        <name>fs.default.name</name>
+        <value>hdfs://$NAMENODE_HOST</value>
+    </property>
+
+    <property>
+      <name>dfs.namenode.name.dir</name>
+      <value>file:///var/hadoop/dfs/name</value>
+    </property>
+
+    <property>
+      <name>dfs.datanode.data.dir</name>
+      <value>file:///var/hadoop/dfs/data</value>
+    </property>
+
+    <property>
+      <name>dfs.datanode.use.datanode.hostname</name>
+      <value>true</value>
+      <description>Whether datanodes should use datanode hostnames when
+        connecting to other datanodes for data transfer.
+      </description>
+    </property>
+
+    <property>
+      <name>dfs.namenode.servicerpc-address</name>
+      <value>$NAMENODE_BIND_TO</value>
+      <description>
+        RPC address for HDFS Services communication. BackupNode, Datanodes and all
+    other services should be
+        connecting to this address if it is configured. In the case of HA/Federatio
+    n where multiple namenodes exist,
+        the name service id is added to the name e.g. dfs.namenode.servicerpc-addre
+    ss.ns1
+        dfs.namenode.rpc-address.EXAMPLENAMESERVICE
+        The value of this property will take the form of nn-host1:rpc-port.
+        If the value of this property is unset the value of dfs.namenode.rpc-addres
+    s will be used as the default.
+      </description>
+    </property>
+
+</configuration>
