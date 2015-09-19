@@ -46,4 +46,9 @@
       </description>
     </property>
 
+    <property>
+      <name>dfs.replication</name>
+      <value>$REPLICATION</value>
+    </property>
+
 </configuration>

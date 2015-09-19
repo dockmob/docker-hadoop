@@ -5,15 +5,19 @@ then
     set -e
 
     usage() { echo "Usage: docker run [<docker options>] dockmob/hadoop -t [namenode|datanode]" 1>&2; exit 1; }
+    usagenamenode() { echo "Usage: docker run [<docker options>] dockmob/hadoop -t namenode -r <replication-factor>" 1>&2; exit 1; }
     usagedatanode() { echo "Usage: docker run [<docker options>] dockmob/hadoop -t datanode -n <namenode-host>" 1>&2; exit 1; }
 
-    while getopts ":n:t:" o; do
+    while getopts ":n:r:t:" o; do
         case "${o}" in
             t)
                 t=${OPTARG}
                 ;;
             n)
                 n=${OPTARG}
+                ;;
+            r)
+                r=${OPTARG}
                 ;;
             *)
                 usage
@@ -27,11 +31,15 @@ then
     elif [ "${t}" == "namenode" ]; then
         echo "Starting $t"
 
+        if [ -z "${r}" ]; then
+            usagenamenode
+        fi
+
         HOSTNAME=$(cat /etc/hostname)
 
         echo "Hostname=$HOSTNAME"
 
-        sed -e "s/\$NAMENODE_HOST/$HOSTNAME/" -e "s/\$NAMENODE_BIND_TO//" /usr/lib/hadoop/etc/hadoop/hdfs-site.template > /usr/lib/hadoop/etc/hadoop/hdfs-site.xml
+        sed -e "s/\$NAMENODE_HOST/$HOSTNAME/" -e "s/\$NAMENODE_BIND_TO//" -e "s/\$REPLICATION/$r/" /usr/lib/hadoop/etc/hadoop/hdfs-site.template > /usr/lib/hadoop/etc/hadoop/hdfs-site.xml
         ./hdfs namenode -format
 
         ./hdfs $t
@@ -47,7 +55,7 @@ then
 
         echo "Hostname=$HOSTNAME"
         NAMENODE_HP="${n}:8020"
-        sed -e "s/\$NAMENODE_HOST/$HOSTNAME/" -e "s/\$NAMENODE_BIND_TO/$NAMENODE_HP/" /usr/lib/hadoop/etc/hadoop/hdfs-site.template > /usr/lib/hadoop/etc/hadoop/hdfs-site.xml
+        sed -e "s/\$NAMENODE_HOST/$HOSTNAME/" -e "s/\$NAMENODE_BIND_TO/$NAMENODE_HP/"  -e "s/\$REPLICATION//" /usr/lib/hadoop/etc/hadoop/hdfs-site.template > /usr/lib/hadoop/etc/hadoop/hdfs-site.xml
 
         ./hdfs $t
     fi

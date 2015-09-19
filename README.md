@@ -6,7 +6,7 @@ A HDFS cluster consists of a Namenode container and at least 3 Datanode containe
 Both namenodes and datanodes can be provisioned using the *dockmob/hadoop* image as follows.
 
 ```
-docker run -d -h dfs --name dfs dockmob/hadoop -t namenode
+docker run -d -h dfs --name dfs dockmob/hadoop -t namenode -r 3
 docker run -d -h dn1 --name dn1 dockmob/hadoop -t datanode -n dfs
 docker run -d -h dn2 --name dn2 dockmob/hadoop -t datanode -n dfs
 docker run -d -h dn3 --name dn3 dockmob/hadoop -t datanode -n dfs
