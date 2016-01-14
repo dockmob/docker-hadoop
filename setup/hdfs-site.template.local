@@ -31,5 +31,9 @@
         <name>dfs.permissions</name>
         <value>false</value>
     </property>
+    <property>
+        <name>dfs.datanode.dns.interface</name>
+        <value>lo</value>
+    </property>
 
 </configuration>

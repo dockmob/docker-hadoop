@@ -8,11 +8,10 @@ ADD ./setup /setup
 WORKDIR /setup
 
 RUN ./install.sh
-#\
-#    && rm -rf /setup
 
 WORKDIR /usr/lib/hadoop/bin
 
+ENV DATA_DIRECTORY=/var/hadoop
 VOLUME /var/hadoop
 
 # Namenode ports

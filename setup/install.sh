@@ -29,6 +29,8 @@ rm -rf /usr/lib/hadoop/share/hadoop/kms
 
 # Copy template
 cp hdfs-site.template /usr/lib/hadoop/etc/hadoop/
+cp hdfs-site.template.local /usr/lib/hadoop/etc/hadoop/
+cp core-site.template /usr/lib/hadoop/etc/hadoop/
 
 mv dockmobStart.sh /usr/lib/hadoop/bin
 
