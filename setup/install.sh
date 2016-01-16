@@ -27,6 +27,9 @@ find /usr/lib/hadoop/share -name *example*.jar | xargs rm -rf
 rm -rf /usr/lib/hadoop/share/hadoop/httpfs
 rm -rf /usr/lib/hadoop/share/hadoop/kms
 
+# Remove archive
+rm -rf /setup/*.gz
+
 # Copy template
 cp hdfs-site.template /usr/lib/hadoop/etc/hadoop/
 cp hdfs-site.template.local /usr/lib/hadoop/etc/hadoop/
