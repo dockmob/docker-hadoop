@@ -33,7 +33,7 @@
     </property>
     <property>
         <name>dfs.datanode.dns.interface</name>
-        <value>lo</value>
+        <value>eth0</value>
     </property>
 
 </configuration>

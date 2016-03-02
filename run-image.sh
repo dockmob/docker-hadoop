@@ -1,2 +1,2 @@
-docker run -p 8020:8020 -p 50070:50070 -p 50010:50010 -p 50020:50020 -p 50075:50075 -h hadoop --entrypoint bash -it dockmob/hadoop
-#docker run -p 8020:8020 -p 50070:50070 -p 50010:50010 -p 50020:50020 -p 50075:50075 -h hadoop dockmob/hadoop -t pseudodistributed
+#docker run -p 8020:8020 -p 50070:50070 -p 50010:50010 -p 50020:50020 -p 50075:50075 -h hdfs --entrypoint bash -it dockmob/hadoop
+docker run -p 8020:8020 -p 50070:50070 -p 50010:50010 -p 50020:50020 -p 50075:50075 -h hdfs dockmob/hadoop -t pseudodistributed

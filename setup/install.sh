@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=2.7.1
+VERSION=2.6.0
 
 if [ ! -f "hadoop-$VERSION.tar.gz" ]; then
     wget http://archive.eu.apache.org/dist/hadoop/common/hadoop-${VERSION}/hadoop-${VERSION}.tar.gz
